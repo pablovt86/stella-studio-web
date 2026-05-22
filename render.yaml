@@ -1,5 +1,13 @@
 services:
-  # SERVICIO 1: BACKEND (Node.js)
+  - type: web
+    name: stella-frontend
+    runtime: static
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: ./frontend/dist
+    envVars:
+      - key: VITE_API_URL
+        value: https://stella-backend.onrender.com
+
   - type: web
     name: stella-backend
     runtime: node
@@ -10,17 +18,4 @@ services:
       - key: DATABASE_URL
         sync: false
       - key: DIRECT_URL
-        sync: false
-      - key: PORT
-        value: 3000
-
-  # SERVICIO 2: FRONTEND (React)
-  - type: web
-    name: stella-frontend
-    runtime: static
-    rootDirectory: frontend
-    buildCommand: npm install && npm run build
-    staticPublishPath: dist
-    envVars:
-      - key: VITE_API_URL
-        value: https://stella-backend.onrender.com
+        sync: falses
