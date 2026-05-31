@@ -10,11 +10,10 @@
       name="description"
       content="Stella Estudio: barbería, peluquería y estética en Av. San Juan 2983, San Cristóbal, CABA. Reservá tu turno online."
     />
-
     <meta name="author" content="Stella Estudio" />
-
     <link rel="canonical" href="https://stellaestudio.com" />
     <link rel="icon" type="image/png" href="/favicon.png" />
+
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta
@@ -50,5 +49,19 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+<!-- Botpress Webchat (original, sin tocar) -->
+<!-- Botpress - Solo el contenedor, sin botón flotante -->
+<script>
+  window.botpressWebChat = {
+    host: 'https://cdn.botpress.cloud',
+    botId: 'b5c9cd94-993b-46ea-9e07-a25c58ea1121',
+    hideWidget: true,
+    disableFab: true,
+    startOpen: false
+  };
+</script>
+<script src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"></script>
+
+<!-- No incluyas el segundo script (el que crea el botón flotante) -->
   </body>
 </html>
