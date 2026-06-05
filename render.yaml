@@ -6,16 +6,18 @@ services:
     staticPublishPath: ./frontend/dist
     envVars:
       - key: VITE_API_URL
-        value: https://stella-backend.onrender.com
+        value: https://stella-backend-n1uo.onrender.com # Usa la URL real de tu backend en Render
 
   - type: web
     name: stella-backend
     runtime: node
     rootDirectory: backend
-    buildCommand: npm install
+    buildCommand: npm install && npx prisma generate # Sumamos la generación de Prisma por las dudas
     startCommand: npx ts-node src/server.ts
     envVars:
       - key: DATABASE_URL
-        sync: false
+        sync: false # Render te va a pedir que asocies este valor desde su panel
       - key: DIRECT_URL
-        sync: falses
+        sync: false # Corregido: de 'falses' a 'false'
+      - key: MP_ACCESS_TOKEN
+        sync: false # Dejá esta línea agregada para que Render te pida cargar tu Token Real de Mercado Pago en su Web
