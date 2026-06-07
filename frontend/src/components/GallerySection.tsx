@@ -40,6 +40,7 @@ const GallerySection = () => {
     onSelect();
     return () => { emblaApi.off("select", onSelect); };
   }, [emblaApi, onSelect]);
+    console.log('Imágenes cargadas:', galleryFade, galleryBalayage);
 
   return (
     <section className="py-24 px-6" id="galeria">
