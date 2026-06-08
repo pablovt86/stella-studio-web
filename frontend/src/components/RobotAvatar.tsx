@@ -32,7 +32,7 @@ const RobotAvatar: React.FC = () => {
           </div>
         </div>
         <div className="robot-tooltip">
-          <span>✨ ¡Hola! Soy Stella ✨</span>
+          <span>✨ ¡Hola! Soy Stella.Oprime y reserva Tu Turno✨ </span>
         </div>
       </div>
 
