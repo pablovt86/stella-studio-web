@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { getServices } from "../lib/api"; // Asegurá esta ruta según tu estructura
 
 // Importamos las imágenes desde la carpeta correcta (src/assets)
-import barberImg from "../assets/service-barber.jpg";
-import hairImg from "../assets/service-hair.jpg";
-import nailsImg from "../assets/service-nails.jpg";
+import barberImg from "@/assets/service-barber.jpg";
+import hairImg from "@/assets/service-hair.jpg";
+import nailsImg from "@/assets/service-nails.jpg";
 
 interface ServiceData {
   id: string;
