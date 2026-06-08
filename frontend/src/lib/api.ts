@@ -30,9 +30,18 @@ export async function getServices(): Promise<Service[]> {
 }
 
 // Obtener servicios por categoría
+// Obtener servicios por categoría (100% DINÁMICO)
 export async function getServicesByCategory(category: string): Promise<Service[]> {
   const todos = await getServices();
-  return todos.filter(s => s.category === category);
+  
+  // Imprimimos en consola para auditar que el filtro reciba los datos
+  console.log("🔍 Filtrando servicios para la categoría:", category, "Total recibidos:", todos.length);
+  
+  return todos.filter(s => {
+    if (!s.category) return false;
+    // Comparamos en minúsculas para que no falle jamás por un tema de tipeo
+    return s.category.toLowerCase().trim() === category.toLowerCase().trim();
+  });
 }
 
 // Crear un turno

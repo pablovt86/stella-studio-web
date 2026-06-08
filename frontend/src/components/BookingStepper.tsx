@@ -45,46 +45,27 @@ const BookingStepper = () => {
 
   // NUEVO useEffect: carga servicios desde el backend cuando cambia la categoría
 // useEffect REFACTORIZADO: Trae todos los servicios y los clasifica por ID para evitar el campo category vacío
-  useEffect(() => {
+ useEffect(() => {
     if (category) {
       setLoading(true);
-      
-      // Importamos la función general para traer todos los 14 servicios que sí sabemos que llegan
-      import("@/lib/api").then(({ getServices }) => {
-        getServices()
-          .then(allServices => {
-            // Clasificamos los servicios de la API según su ID para que caigan en la categoría correcta
-            const filtered = allServices.filter(s => {
-              const id = s.id.toLowerCase();
-              
-              if (category === "barberia") {
-                return id.includes("corte-caballero") || id.includes("barba") || id.includes("afeitado");
-              }
-              if (category === "peluqueria") {
-                return id.includes("dama") || id.includes("balayage") || id.includes("tintura") || id.includes("capilar") || id.includes("brushing");
-              }
-              if (category === "unas") {
-                return id.includes("esculpidas") || id.includes("kapping") || id.includes("semipermanente") || id.includes("nail");
-              }
-              return false;
-            });
-
-            // Convertir servicios filtrados al formato que espera tu diseño del frontend
-            const formatted = filtered.map(s => ({
-              name: s.name,
-              price: `$${s.price.toLocaleString()}`,
-              duration: `${s.durationMins} min`,
-              id: s.id
-            }));
-            
-            setDynamicServices(formatted);
-          })
-          .catch(error => {
-            console.error("Error al cargar y clasificar servicios:", error);
-            setDynamicServices([]);
-          })
-          .finally(() => setLoading(false));
-      });
+      getServicesByCategory(category)
+        .then(services => {
+          console.log(`🍏 Servicios cargados para ${category}:`, services);
+          
+          // Mapeamos al formato visual de tus botones
+          const formatted = services.map(s => ({
+            name: s.name,
+            price: `$${s.price.toLocaleString()}`,
+            duration: `${s.durationMins} min`,
+            id: s.id
+          }));
+          setDynamicServices(formatted);
+        })
+        .catch(error => {
+          console.error("Error al cargar servicios desde el backend:", error);
+          setDynamicServices([]);
+        })
+        .finally(() => setLoading(false));
     }
   }, [category]);
 
