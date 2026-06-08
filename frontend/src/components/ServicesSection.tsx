@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { getServices } from "../lib/api"; // Asegurá esta ruta según tu estructura
 
 // Importamos las imágenes desde la carpeta correcta (src/assets)
