@@ -43,9 +43,28 @@ const ServicesSection = () => {
       .finally(() => setLoading(false));
   }, []);
 
-  const getCountByCategory = (category: string) => {
-    return services.filter((s) => s.category === category).length;
-  };
+  const getCountByCategory = (categoryKey: string) => {
+  return services.filter((s) => {
+    // 1. Si el backend trae el campo category, lo usamos en minúsculas
+    if (s.category) {
+      return s.category.toLowerCase().includes(categoryKey.toLowerCase());
+    }
+    
+    // 2. Si no viene el campo category, lo deducimos inteligentemente por el ID del servicio
+    const id = s.id.toLowerCase();
+    if (categoryKey === "barberia") {
+      return id.includes("corte-caballero") || id.includes("barba") || id.includes("afeitado");
+    }
+    if (categoryKey === "peluqueria") {
+      return id.includes("dama") || id.includes("balayage") || id.includes("tintura") || id.includes("capilar") || id.includes("brushing");
+    }
+    if (categoryKey === "unas") {
+      return id.includes("esculpidas") || id.includes("kapping") || id.includes("semipermanente") || id.includes("nail");
+    }
+    
+    return false;
+  }).length;
+};
 
   const handleCategoryClick = (categoryKey: string) => {
     const bookingSection = document.getElementById("booking");
