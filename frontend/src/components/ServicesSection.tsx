@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { getServices } from "../lib/api"; // Asegurá esta ruta según tu estructura
+import React, { useState, useEffect } from "react";
+import { getServices } from "../lib/api"; 
 
 // Importamos las imágenes desde la carpeta correcta (src/assets)
 import barberImg from "@/assets/service-barber.jpg";
@@ -33,10 +33,10 @@ const ServicesSection = () => {
   const [services, setServices] = useState<ServiceData[]>([]);
   const [loading, setLoading] = useState(true);
 
- useEffect(() => {
+  useEffect(() => {
     getServices()
       .then((data) => {
-        console.log("🍏 DATOS REALES DE LA API:", data); // 👈 METÉ ESTA LÍNEA ACÁ
+        console.log("🍏 DATOS REALES DE LA API:", data); 
         setServices(data);
       })
       .catch((err) => console.error("Error cargando contadores de servicios:", err))
@@ -44,33 +44,30 @@ const ServicesSection = () => {
   }, []);
 
   const getCountByCategory = (categoryKey: string) => {
-  return services.filter((s) => {
-    // 1. Si el backend trae el campo category, lo usamos en minúsculas
-    if (s.category) {
-      return s.category.toLowerCase().includes(categoryKey.toLowerCase());
-    }
-    
-    // 2. Si no viene el campo category, lo deducimos inteligentemente por el ID del servicio
-    const id = s.id.toLowerCase();
-    if (categoryKey === "barberia") {
-      return id.includes("corte-caballero") || id.includes("barba") || id.includes("afeitado");
-    }
-    if (categoryKey === "peluqueria") {
-      return id.includes("dama") || id.includes("balayage") || id.includes("tintura") || id.includes("capilar") || id.includes("brushing");
-    }
-    if (categoryKey === "unas") {
-      return id.includes("esculpidas") || id.includes("kapping") || id.includes("semipermanente") || id.includes("nail");
-    }
-    
-    return false;
-  }).length;
-};
+    return services.filter((s) => {
+      if (s.category) {
+        return s.category.toLowerCase().includes(categoryKey.toLowerCase());
+      }
+      
+      const id = s.id.toLowerCase();
+      if (categoryKey === "barberia") {
+        return id.includes("corte-caballero") || id.includes("barba") || id.includes("afeitado");
+      }
+      if (categoryKey === "peluqueria") {
+        return id.includes("dama") || id.includes("balayage") || id.includes("tintura") || id.includes("capilar") || id.includes("brushing");
+      }
+      if (categoryKey === "unas") {
+        return id.includes("esculpidas") || id.includes("kapping") || id.includes("semipermanente") || id.includes("nail");
+      }
+      
+      return false;
+    }).length;
+  };
 
   const handleCategoryClick = (categoryKey: string) => {
     const bookingSection = document.getElementById("booking");
     if (bookingSection) {
       bookingSection.scrollIntoView({ behavior: "smooth" });
-      // Disparamos el evento personalizado para que el formulario se entere del cambio
       window.dispatchEvent(
         new CustomEvent("selectCategory", { detail: categoryKey })
       );
@@ -79,9 +76,9 @@ const ServicesSection = () => {
 
   if (loading) {
     return (
-      <section className="py-24 px-6 bg-background" id="servicios">
+      <section className="py-24 px-6 bg-black" id="servicios">
         <div className="container text-center">
-          <p className="text-muted-foreground font-body text-sm tracking-wider animate-pulse">
+          <p className="text-zinc-400 font-body text-sm tracking-wider animate-pulse">
             Cargando la experiencia Stella...
           </p>
         </div>
@@ -90,16 +87,16 @@ const ServicesSection = () => {
   }
 
   return (
-    <section className="py-24 px-6 bg-background" id="servicios">
+    <section className="py-24 px-6 bg-black" id="servicios">
       <div className="container mx-auto max-w-6xl">
         
         {/* Cabecera de Autor */}
         <div className="text-center mb-16 fade-in-up">
-          <h2 className="font-heading text-3xl md:text-4xl font-light tracking-[0.08em] mb-4 text-foreground">
-            Servicios de <span className="text-gradient-gold font-normal">Autor</span>
+          <h2 className="font-heading text-3xl md:text-4xl font-light tracking-[0.08em] mb-4 text-white">
+            Servicios de <span className="text-amber-500 font-normal">Autor</span>
           </h2>
-          <div className="gold-divider mb-4 mx-auto" />
-          <p className="text-muted-foreground font-body text-sm tracking-wider max-w-md mx-auto leading-relaxed">
+          <div className="w-24 h-px bg-amber-500/50 mb-4 mx-auto" />
+          <p className="text-zinc-400 font-body text-sm tracking-wider max-w-md mx-auto leading-relaxed">
             Cada servicio es una experiencia diseñada con precisión artesanal.
           </p>
         </div>
@@ -109,7 +106,7 @@ const ServicesSection = () => {
           {Object.entries(CATEGORY_META).map(([key, item], index) => (
             <article
               key={key}
-              className="fade-in-up group cursor-pointer bg-card border border-border/40 rounded-sm overflow-hidden shadow-md hover:shadow-xl transition-all duration-500"
+              className="fade-in-up group cursor-pointer bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl hover:border-amber-500/30 transition-all duration-500"
               style={{ animationDelay: `${index * 150}ms` }}
               onClick={() => handleCategoryClick(key)}
             >
@@ -122,22 +119,22 @@ const ServicesSection = () => {
                   loading="lazy"
                 />
                 {/* Filtro Oscuro de la Peluquería */}
-                <div className="absolute inset-0 bg-background/30 group-hover:bg-background/10 transition-colors duration-500" />
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-500" />
               </div>
 
               {/* Textos y Contadores */}
-              <div className="p-6 bg-card">
-                <h3 className="font-heading text-2xl text-primary mb-2 tracking-wide group-hover:text-amber-400 transition-colors duration-300">
+              <div className="p-6 bg-zinc-900">
+                <h3 className="font-heading text-2xl text-amber-500 mb-2 tracking-wide group-hover:text-amber-400 transition-colors duration-300">
                   {item.title}
                 </h3>
-                <p className="font-body text-sm text-muted-foreground leading-relaxed mb-4 min-h-[60px]">
+                <p className="font-body text-sm text-zinc-400 leading-relaxed mb-4 min-h-[60px]">
                   {item.description}
                 </p>
-                <div className="flex items-center justify-between border-t border-border/50 pt-3">
-                  <span className="text-xs text-muted-foreground tracking-widest uppercase">
+                <div className="flex items-center justify-between border-t border-zinc-800 pt-3">
+                  <span className="text-xs text-zinc-500 tracking-widest uppercase">
                     {getCountByCategory(key)} Servicios disponibles
                   </span>
-                  <span className="text-primary text-xs tracking-widest font-light group-hover:translate-x-1 transition-transform duration-300">
+                  <span className="text-amber-500 text-xs tracking-widest font-light group-hover:translate-x-1 transition-transform duration-300">
                     RESERVAR →
                   </span>
                 </div>
