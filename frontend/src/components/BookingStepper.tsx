@@ -17,8 +17,8 @@ const CATEGORIES = [
 // Profesionales (por ahora estáticos, después pueden venir de la BD)
 const PROFESSIONALS = [
   { name: "Carmen", specialty: "Peluquería & Color", category: "peluqueria" },
-  { name: "Rafael", specialty: "Barbería", category: "barberia" },
-  { name: "Alexander", specialty: "Barbería", category: "barberia" },
+  { name: "Juan", specialty: "Barbería", category: "barberia" },
+  { name: "Roberto", specialty: "Barbería", category: "barberia" },
   { name: "Noris", specialty: "Uñas", category: "unas" },
 ];
 
