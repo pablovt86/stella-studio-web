@@ -1,7 +1,7 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import ServicesSection from "@/components/ServicesSection";
+import ServiciosPremium from "@/components/ServiciosPremium"; // 👈 1. CAMBIAMOS EL IMPORT ACÁ
 import BookingStepper from "@/components/BookingStepper";
 import FAQSection from "@/components/FAQSection";
 import GallerySection from "@/components/GallerySection";
@@ -15,7 +15,7 @@ const Index = () => {
     <main className="min-h-screen bg-background">
       <Navbar />
       <HeroSection />
-      <ServicesSection />
+      <ServiciosPremium /> {/* 👈 2. ACÁ INYECTAMOS EL NUEVO COMPONENTE */}
       <BookingStepper />
       <FAQSection />
       <GallerySection />
