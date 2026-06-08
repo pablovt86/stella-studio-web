@@ -87,11 +87,13 @@ const ServicesSection = () => {
   }
 
   return (
+    
     <section className="py-24 px-6 bg-black" id="servicios">
+      <h1 className="text-5xl text-red-600 bg-white p-4 text-center z-50 relative">¡SI VES ESTO EL COMPONENTE ESTÁ VIVO!</h1>
       <div className="container mx-auto max-w-6xl">
         
         {/* Cabecera de Autor */}
-        <div className="text-center mb-16 fade-in-up">
+        <div className="text-center mb-16 ">
           <h2 className="font-heading text-3xl md:text-4xl font-light tracking-[0.08em] mb-4 text-white">
             Servicios de <span className="text-amber-500 font-normal">Autor</span>
           </h2>
@@ -106,7 +108,7 @@ const ServicesSection = () => {
           {Object.entries(CATEGORY_META).map(([key, item], index) => (
             <article
               key={key}
-              className="fade-in-up group cursor-pointer bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl hover:border-amber-500/30 transition-all duration-500"
+              className=" group cursor-pointer bg-zinc-900 border border-zinc-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl hover:border-amber-500/30 transition-all duration-500"
               style={{ animationDelay: `${index * 150}ms` }}
               onClick={() => handleCategoryClick(key)}
             >
