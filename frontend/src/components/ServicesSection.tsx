@@ -33,9 +33,12 @@ const ServicesSection = () => {
   const [services, setServices] = useState<ServiceData[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
+ useEffect(() => {
     getServices()
-      .then(setServices)
+      .then((data) => {
+        console.log("🍏 DATOS REALES DE LA API:", data); // 👈 METÉ ESTA LÍNEA ACÁ
+        setServices(data);
+      })
       .catch((err) => console.error("Error cargando contadores de servicios:", err))
       .finally(() => setLoading(false));
   }, []);
